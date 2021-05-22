@@ -1,0 +1,64 @@
+@import '~bootstrap/scss/bootstrap';
+@import url(//fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
+body {
+  font-family: "Noto Sans Japanese", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.font-size-color {
+  font-size: 16px;
+  color: darkslategrey;
+}
+
+.top-image {
+  max-width: 100%;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.margin-top-bottom {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.margin-bottom-long {
+  margin-bottom: 100px;
+}
+
+.margin-top-bottom-pro{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.font-size-post {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.font-size-title {
+  margin-top: 50px;
+}
+
+.font-size-body {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.margin-top-bottom-form {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.margin-top-30px {
+  margin-top: 30px;
+}
+
+footer {
+  padding: 64px 0;
+  background: #323135;
+  font-size: 17px;
+  color: #98969c;
+  text-align: center;
+}

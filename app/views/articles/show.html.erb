@@ -1,0 +1,54 @@
+<% content_for :title do %>
+  MCraft｜<%= @article.title %>
+<% end %>
+<head>
+  <style>
+      .header {
+          background: #a29bfe;
+          text-align: center;
+      }
+      .card {
+          min-width: 220px;
+          max-width: 270px;
+          margin-bottom: 10px !important;
+          margin: auto;
+      }
+      .sidebar {
+          min-height: 500px;
+      }
+  </style>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/" style="margin-left: 30px">- MCraft -</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">ホーム</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">協力したい人 依頼募集中の人</a>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "スタッフを募集する", new_article_path %></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログアウト"%></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ユーザー登録" %></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログイン" %></p>
+  </div>
+</nav>
+<div class="container">
+  <% if @article.image? %>
+    <%= image_tag @article.image.url, class: "img-fluid" %>
+  <% else %>
+    <%= image_tag "default.png", class: "img-fluid" %>
+  <% end %>
+    <p class="font-size-post">投稿者: 〇〇　いいね数: 0</p>
+  <h1 class="font-size-title"><%= @article.title %></h1>
+  <p class="font-size-body"<%=simple_format(@article.body)%></p>
+  <%= link_to "編集する", edit_article_path(@article), class: "btn btn-primary", style: "margin-bottom: 100px; margin-top: 30px" %>
+  <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn btn-danger", style: "margin-bottom: 100px; margin-top: 30px" %>
+</div>

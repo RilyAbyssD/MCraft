@@ -1,0 +1,49 @@
+<% content_for :title do %>
+  MCraft｜<%= @article.title %>の編集
+<% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/" style="margin-left: 30px">- MCraft -</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">ホーム</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">協力したい人 依頼募集中の人</a>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "スタッフを募集する", new_article_path %></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログアウト"%></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ユーザー登録" %></p>
+    <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログイン" %></p>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="text-center margin-top-bottom-form">募集内容を変更する</h1>
+  <%= form_for @article do |f| %>
+
+    <div class="form-group padding-top-15">
+      <% if @article.image? %>
+        <%= image_tag @article.image.url, class: "img-fluid" %>
+      <% else %>
+        <%= image_tag "default.png"%>
+      <% end %>
+      <%= f.file_field :image %>
+      <p>※選択しても表示されている画像は変わりませんが投稿すると、表示されます。</p>
+    </div>
+    <div class="form-group padding-top-15">
+      <%= f.label(:title, "サーバー名を記入してください。「〇〇サーバー運営募集！！」等の文章は、ご控えください)", class: "form-label margin-top-30px", style: "font-size: 18px") %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group padding-top-15">
+      <%= f.label :body, "内容(今後、マークダウンでの作成が可能になる予定です)", class: "form-label margin-top-30px", style: "font-size: 18px" %>
+      <%= f.text_area :body, rows: 10, class: "form-control" %>
+    </div>
+    <%= f.submit "編集して更新する", class: "btn btn-success", style: "margin-top: 35px; margin-bottom: 35px;" %>
+<% end %>
+</div>

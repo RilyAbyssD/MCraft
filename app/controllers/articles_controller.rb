@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
   def index
     @article = Article.order(created_at: :desc).all
   end
@@ -34,18 +34,18 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = find_article_by_id
+    @article = find_article
     @article.update(params.require(:article).permit(:title, :body, :image))
     redirect_to articles_path
   end
 
   private
-  # def article_params
-  #   params.require(:article).permit(:title, :body, :image)
-  # end
+  def article_params
+    params.require(:article).permit(:title, :body, :image)
+  end
 
-  def find_article_by_id
-    Article.find(params[:id])
+  def find_article
+    @article = Article.find(params[:id])
   end
 
 end

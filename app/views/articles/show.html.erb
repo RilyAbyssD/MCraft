@@ -24,9 +24,12 @@
   <% else %>
     <%= image_tag "default.png", class: "img-fluid" %>
   <% end %>
-    <p class="font-size-post">投稿者: 〇〇　いいね数: 0</p>
+  <p class="font-size-post">投稿者: <%= @user.name %>　 いいね数: 0</p>
   <h1 class="font-size-title"><%= @article.title %></h1>
   <p class="font-size-body"<%=simple_format(@article.body)%></p>
-  <%= link_to "編集する", edit_article_path(@article), class: "btn btn-primary", style: "margin-bottom: 100px; margin-top: 30px" %>
-  <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn btn-danger", style: "margin-bottom: 100px; margin-top: 30px" %>
+  <% if user_signed_in? && @article.user_id == current_user.id %>
+    <%= link_to "編集する", edit_article_path(@article), class: "btn btn-primary", style: "margin-bottom: 100px; margin-top: 30px" %>
+    <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn btn-danger", style: "margin-bottom: 100px; margin-top: 30px" %>
+  <% end %>
+
 </div>

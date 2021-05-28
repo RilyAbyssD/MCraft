@@ -6,10 +6,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @user = User.find(@article.user_id)
   end
 
   def edit
-    @article = find_article_by_id
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -19,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     # 空メソッドに、データを入れ、saveでDBに保存
-    @article = Article.new(params.require(:article).permit(:title, :body, :image))
+    @article = Article.new(params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id))
     # @article.save
     if @article.save
       redirect_to @article, notice: "作成できました"

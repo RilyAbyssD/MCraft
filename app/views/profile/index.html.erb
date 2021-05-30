@@ -1,0 +1,18 @@
+<% content_for :title do %>
+  MCraft｜協力したい人 依頼募集中の人
+<% end %>
+<div class="container">
+  <div class="row">
+    <% @user.each do |user| %>
+      <div class="col-md-3">
+        <div class="card">
+          <%= image_tag "MyIcon.jpg", style: "width: 180px;height: 180px;object-fit: cover;", class: "img-fluid" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= user.name %></h5>
+            <%= link_to "詳細", user, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <% content_for :title do %>
   MCraft｜<%= @article.title %>
 <% end %>
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'articles' %>
+<% end %>
 <head>
   <style>
       .header {
@@ -8,8 +11,8 @@
           text-align: center;
       }
       .card {
-          min-width: 220px;
           max-width: 270px;
+          min-width: 220px;
           margin-bottom: 10px !important;
           margin: auto;
       }
@@ -19,17 +22,23 @@
   </style>
 </head>
 <div class="container">
-  <% if @article.image? %>
-    <%= image_tag @article.image.url, class: "img-fluid" %>
-  <% else %>
-    <%= image_tag "default.png", class: "img-fluid" %>
-  <% end %>
-  <h1 class="font-size-title"><strong><%= @article.title %></strong></h1>
-  <p class="font-size-post", style="margin-bottom: 50px">投稿者: <%= @user.name %>　 いいね数: 0</p>
-  <p><%= markdown(@article.body) %></p>
-  <% if user_signed_in? && @article.user_id == current_user.id %>
-    <%= link_to "編集する", edit_article_path(@article), class: "btn btn-primary", style: "margin-bottom: 100px; margin-top: 30px" %>
-    <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn btn-danger", style: "margin-bottom: 100px; margin-top: 30px" %>
-  <% end %>
+  <div class="column">
+    <% if @article.image? %>
+      <%= image_tag @article.image.url, class: "img-fluid" %>
+    <% else %>
+      <%= image_tag "need/default.png", class: "img-fluid" %>
+    <% end %>
+    <h1><strong><%= @article.title %></strong></h1>
+      <p style="margin-bottom: 50px">投稿者: <%= @user.name %>
+        <%= link_to "" do %>
+          <%= image_tag "need/good.png", width:"24px", height:"24px" %> 0</p>
+        <% end %>
+    <p><%= markdown(@article.body) %></p>
+    <% if user_signed_in? && @article.user_id == current_user.id %>
+      <%= link_to "編集する", edit_article_path(@article), class: "btn btn-primary", style: "margin-bottom: 100px; margin-top: 30px" %>
+      <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn btn-danger", style: "margin-bottom: 100px; margin-top: 30px" %>
+    <% end %>
+
+  </div>
 
 </div>

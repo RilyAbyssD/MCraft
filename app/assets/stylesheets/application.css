@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+.text {
+    color: gray;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.text:hover{
+    color: black;
+}
+.accountNav {
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+.accountNav:hover {
+    background-color: #cacaca;
+}

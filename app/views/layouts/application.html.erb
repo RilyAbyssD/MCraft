@@ -10,7 +10,8 @@
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%# <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= yield :css %>
     <%= javascript_pack_tag 'application' %>
     <title><%= content_for?(:title) ? yield(:title) : "デフォルトタイトル"%></title>
 
@@ -22,13 +23,27 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato|Roboto">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <style>
+      .text {
+        color: gray;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .text:hover{
+          color: black;
+      }
+      .accountNav {
+          text-decoration: none;
+          color: black;
+          transition: 0.2s;
+      }
+      .accountNav:hover {
+          background-color: #cacaca;
+      }
+    </style>
   </head>
 
   <body>
-
-<!--    <p class="notice"><%#= notice %></p>-->
-<!--    <p class="alert"><%#= alert %></p>-->
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,7 +58,10 @@
             <a class="nav-link" href="/articles">スタッフを募集しているサーバー</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profile">協力したい人 依頼募集中の人</a>
+            <a class="nav-link" href="/users">協力したい人 依頼募集中の人</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">みんなの作品</a>
           </li>
         </ul>
       </div>
@@ -52,13 +70,24 @@
           <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログアウト", destroy_user_session_path %></p>
           <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "スタッフを募集する", new_article_path %></p>
         <% else %>
-          <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ユーザー登録", new_user_registration_path %></p>
-          <p class="navbar-text navbar-right phone-size" style="margin: 18px"><%= link_to "ログイン", new_user_session_path %></p>
+          <%= link_to new_user_registration_path, class: "accountNav" do %>
+            <p class="navbar-text navbar-right phone-size" style="margin: 18px">
+              <%= image_tag "accounts/account", width:"32px", height:"32px" %>
+              アカウント作成
+            </p>
+          <% end %>
+          <%= link_to new_user_session_path, class:"accountNav" do %>
+            <p class="navbar-text navbar-right phone-size" style="margin: 18px">
+              <%= image_tag "accounts/login", width:"32px", height:"32px" %>
+              ログイン
+            </p>
+          <% end %>
       <% end %>
       </div>
     </nav>
 
     <%= yield %>
+
     <footer class="text-center text-lg-start bg-light text-muted" style="padding: 0px">
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div>
@@ -67,16 +96,21 @@
       <section class="">
         <div class="container">
           <h1 class="fw-bold" style="margin-top: 16px">MCraft</h1>
-          <%= link_to "プライバシーポリシー", "/homes/privacy", style: "color: gray;text-decoration: none"%><br>
-          <%= link_to "利用規約", "/homes/userule", style: "color: gray;text-decoration: none" %><br>
-          <%= link_to "お問い合わせ (TwitterのDMまで)", "https://twitter.com/Mineck100", style: "color: gray;text-decoration: none" %>
+          <%= link_to "プライバシーポリシー", "/homes/privacy", class: 'text'%><br>
+          <%= link_to "利用規約", "/homes/userule", class: "text" %><br>
+          <%= link_to "お問い合わせ (TwitterのDMまで)", "https://twitter.com/Mineck100", class:"margin", class: "text" %>
         </div>
       </section>
       <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         Minecraft は Mojang AB の登録商標です。本サービスは、Mojang社から承認されておらず、Mojang社とは関係ありません。<br>
         © 2021 MCraft Copyright:
-        <a class="text-reset fw-bold" href="https://twitter.com/Mineck100" target="_blank" style="margin-bottom: 16px">Mineck/まいんっく</a>
+        <a class="text text-reset fw-bold" href="https://twitter.com/Mineck100" target="_blank" style="margin-bottom: 16px">Mineck/まいんっく</a>
       </div>
     </footer>
+
+    <script>
+      // ホバー時のエフェクト
+    </script>
+
   </body>
 </html>

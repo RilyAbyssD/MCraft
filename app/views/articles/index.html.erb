@@ -1,6 +1,11 @@
 <% content_for :title do %>
   MCraft｜募集中のサーバー
 <% end %>
+
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'articles' %>
+<% end %>
+
 <head>
   <style>
       .header {
@@ -21,19 +26,22 @@
 <div class="container">
   <div class="row margin-top-bottom-pro">
     <% @article.each do |article| %>
-      <div class="col-md-3 margin-top-Sper article-block padding-top-15">
+      <div class="col-md-3">
         <div class="card" style="width: 18rem;">
-          <% if article.image? %>
-            <%= image_tag article.image.to_s, style: "width: 400px;height: 180px;object-fit: cover;", class: "img-fluid" %>
-          <% else %>
-            <%= image_tag "default.png", style: "width: 400px;height: 180px;object-fit: cover;" , class: "img-fluid" %>
-          <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= article.title %></h5>
-              <p class="card-text">募集開始日: <%= article.created_at.strftime("%Y年%-m月%-d日") %></p>
-              <p class="card-text">いいね数: 0</p>
-              <%= link_to "詳細", article, class: "btn btn-primary" %>
-            </div>
+            <%= link_to article do %>
+              <div class="card" style="width: 18rem;">
+                <% if article.image? %>
+                  <%= image_tag article.image.to_s, style: "width: 400px;height: 180px;object-fit: cover;", class: "img-fluid img_radius" %>
+                <% else %>
+                  <%= image_tag "need/default.png", style: "width: 400px;height: 180px;object-fit: cover;" , class: "img-fluid img_radius" %>
+                <% end %>
+                <div class="card-body">
+                  <h1 class="card-title"><%= article.title %></h1>
+                  <p class="card-text">募集開始日: <%= article.created_at.strftime("%Y年%-m月%-d日") %></p>
+                  <p class="card-text">いいね数: 0</p>
+                </div>
+              </div>
+            <% end %>
         </div>
       </div>
     <% end %>

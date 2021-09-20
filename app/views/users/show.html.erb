@@ -1,0 +1,22 @@
+<% content_for :title do %>
+  MCraft｜協力したい人 依頼募集中の人
+<% end %>
+
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'users' %>
+<% end %>
+
+<div class="container">
+  <div class="row profile">
+    <h1 class="name">
+      <%= image_tag "etc/debugIcon.jpg", class:"userIcon" %>
+      <span class="user-name"><%= @user.name %></span>
+      <%= image_tag "logos/twitter", class:"icon-twitter" %>
+      <span class="social">a</span>
+      <%= image_tag "logos/discord", class:"icon-discord" %>
+      <span class="social">a</span>
+    </h1>
+    <p>どうも、こんにちは</p>
+
+  </div>
+</div>

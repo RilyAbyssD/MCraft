@@ -1,0 +1,65 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.profile-card{
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    img {
+        border-radius: 50%;
+    }
+    h5 {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+.col-md-3 {
+    & {
+        transition: 0.2s
+    }
+    &:hover {
+        background-color: #cacaca;
+    }
+}
+// show.html.erb
+.profile{
+  .center {
+    text-align: center;
+  }
+  .name {
+    margin-top: 50px;
+    h1 {
+      font-size: 28px;
+      margin-top: 50px;
+    }
+    .user-name {
+      margin-left: 20px
+    }
+    .userIcon {
+      border-radius: 10%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+    .icon-twitter {
+      margin-left: 20px;
+      width: 30px;
+      height: 30px;
+    }
+    .icon-discord {
+      margin-left: 5px;
+      width: 30px;
+      height: 30px;
+    }
+    .social {
+      font-size: 18px;
+      color: #656565;
+    }
+  }
+  p {
+    font-size: 18px;
+    margin-top: 50px
+  }
+}
